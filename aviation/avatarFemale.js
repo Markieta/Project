@@ -88,7 +88,7 @@ p.nominalBounds = new cjs.Rectangle(-35.7,0,57.4,92.5);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//this.stop();
+		this.stop();
 	}
 	this.frame_19 = function() {
 		this.gotoAndPlay(1);
@@ -378,12 +378,12 @@ p.nominalBounds = new cjs.Rectangle(-65.4,-18,64.3,63);
 p.nominalBounds = new cjs.Rectangle(-54,-51.6,108.1,103.3);
 
 
-(lib.GirlComp = function(mode,startPosition,loop) {
+(lib.FemaleDefault = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// timeline functions:
 	this.frame_0 = function() {
-		//this.stop();
+		this.stop();
 	}
 	this.frame_34 = function() {
 		this.stop();
@@ -506,15 +506,27 @@ p.nominalBounds = new cjs.Rectangle(-54,-51.6,108.1,103.3);
 p.nominalBounds = new cjs.Rectangle(173.1,-207.4,230.8,616.1);
 
 
+// Open mouth and hand gesture
+(lib.open = function(instance) {
+	instance.gotoAndPlay(0);    // Begin gesture
+	instance.instance_2.play(); // Open mouth
+});
+
+// Close mouth and hand gesture
+(lib.close = function(instance) {
+	instance.gotoAndPlay(35);           // End gesture
+	instance.instance_2.gotoAndStop(0); // Close mouth
+});
+
 // stage content:
 
 
 
-(lib.Test004 = function() {
+(lib.FemaleDefaultInit = function() {
 	this.initialize();
 
 	// Layer 1
-	this.instance = new lib.GirlComp();
+	this.instance = new lib.FemaleDefault();
 	this.instance.setTransform(275.6,201.8,0.605,0.605,0,0,0,300.5,104.8);
 
 	this.addChild(this.instance);

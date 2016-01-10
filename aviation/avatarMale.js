@@ -101,14 +101,14 @@ p.nominalBounds = new cjs.Rectangle(-13.3,-47,30.8,49.9);
 
 	// timeline functions:
 	this.frame_0 = function() {
-		/*
-		js
 		this.stop();
-		*/
+	}
+	this.frame_19 = function() {
+		this.gotoAndPlay(1);
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(10));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(10).call(this.frame_19).wait(1));
 
 	// Layer 1
 	this.shape = new cjs.Shape();
@@ -369,8 +369,22 @@ p.nominalBounds = new cjs.Rectangle(-33.2,31.6,67.3,50.1);
 p.nominalBounds = new cjs.Rectangle(-13.6,-25.8,27.3,51.9);
 
 
-(lib.MaleComp = function(mode,startPosition,loop) {
+(lib.MaleDefault = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+	this.frame_34 = function() {
+		this.stop();
+	}
+	this.frame_69 = function() {
+		this.gotoAndStop(0);
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(34).call(this.frame_34).wait(35).call(this.frame_69).wait(1));
 
 	// Eyes
 	this.instance = new lib.Eyes();
@@ -471,15 +485,28 @@ p.nominalBounds = new cjs.Rectangle(-13.6,-25.8,27.3,51.9);
 p.nominalBounds = new cjs.Rectangle(-102.6,-163.6,153.8,381.5);
 
 
+// Open mouth and hand gesture
+(lib.open = function(instance) {
+	instance.gotoAndPlay(0);    // Begin gesture
+	instance.instance_1.play(); // Open mouth
+});
+
+// Close mouth and hand gesture
+(lib.close = function(instance) {
+	instance.gotoAndPlay(35);           // End gesture
+	instance.instance_1.gotoAndStop(0); // Close mouth
+});
+
+
 // stage content:
 
 
 
-(lib.MaleCompTest = function() {
+(lib.MaleDefaultInit = function() {
 	this.initialize();
 
 	// Layer 1
-	this.instance = new lib.MaleComp();
+	this.instance = new lib.MaleDefault();
 	this.instance.setTransform(271,210.2,1,1,0,0,0,-26.6,31.6);
 
 	this.addChild(this.instance);
